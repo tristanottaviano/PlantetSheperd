@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Planet Shepard</title>
+    <link href="MainPage.css" rel="stylesheet">
+    <link href="SidePanel.css" rel="stylesheet">
+    <link href="PinPanel.css" rel="stylesheet">
+    <link href="TopPanel.css" rel="stylesheet">
+    <link href="Modal.css" rel="stylesheet">
+    <link href="Graphs.css" rel="stylesheet">
+    <link href="List.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkyETtYbq8PPrVpUvUG1LZ2zcpbi-p8cc&libraries=drawing&callback=initMap&libraries=drawing&v=weekly"async> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js"></script>
+    
+        <script type="text/javascript" src="Conversion.js"></script>
+        <script type="text/javascript" src="Map.js"></script>
+        <script type="text/javascript" src="Graphs.js" defer></script>
+        <script type="text/javascript" src="Interface.js" defer></script>
+        <script type="text/javascript" src="Pin.js"></script>
+        <script type="text/javascript" src="FakePins.js"></script> 
+    
+
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+        }
+    </style>
+
+</head>
+
+<body style="margin: 0;">
+
+    <!-- MAP -->
+    <div id="displayMap"></div>
+
+    <!-- File openner -->
+    <input id="file-input" type="file" name="name" style="display: none;" /> 
+
+    <!-- mapsList modal -->
+    <div id="mapListModal" class="modal">
+
+        <!-- myMaps modal content -->
+        <div class="modalContent" id="mapListModalContent">
+
+            <div class="modalHeader">
+                <span class="close" id="closeMapListModal">&times;</span>
+                <h2 id="mapListModalTitle">My Maps</h2>
+            </div>
+
+            <div class="modalBody" id="mapListModalContentBody">
+
+                <ul id="mapListModalMapsList" class="list">
+
+                    <li class="listItem" id="gridJson"> <a>Grid Map</a>
+                        <div class="listItemDescription"> This is the grid generatade by our algorithm </div>
+                    </li>
+                    <li class="listItem" id="solarPotentialdMap"> <a>Solar Potential</a>
+                        <div class="listItemDescription"> This is the map of the potential of the solar energy </div>
+                    </li>
+                    <li class="listItem" id="windPotentialdMap"> <a>Wind Potential</a>
+                        <div class="listItemDescription"> This is the map of the potential of the wind energy </div>
+                    </li>
+                    <li class="listItem" id="hydrolicPotentialdMap"> <a>Hydrolic Potential</a>
+                        <div class="listItemDescription"> This is the map of the potential of the hydrolic energy </div>
+                    </li>
+                    <li class="listItem" id="populationdMap"> <a>Population Map</a>
+                        <div class="listItemDescription"> This is the map of the population </div>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="modalFooter" id="mapListModalFooter">
+                <button id="mapListModalCancelButton"> Cancel </button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- analysis modal -->
+    <div id="analysisModal" class="modal">
+
+        <!-- myanalysiss modal content -->
+        <div class="modalContent" id="analysisModalContent">
+
+            <div class="modalHeader">
+                <span class="close" id="closeAnalysisModal">&times;</span>
+                <h2 id="analysisModalTitle">Detailed Analaysis</h2>
+            </div>
+
+            <div class="modalBody" id="analysisModalContentBody">
+
+                <div class="graphModalItem"> 
+                    
+                    <div id="potentialRepartitionGraphCont">
+                        <canvas id="potentialRepartitionGraph" class="graph"> </canvas>
+                    </div>
+                    
+                    <div id="energyRepartitionGraphCont2">
+                        <canvas id="energyRepartitionGraph2" class="graph"> </canvas>
+                    </div>
+
+
+                </div>
+
+                <div class="graphModalItem"> 
+                    
+                    <div id="monthlyProductionGraphCont">
+                        <canvas id="monthlyProductionGraph" class="graph"> </canvas>
+                    </div>
+                    
+                </div>
+
+                <div class="graphModalItem"> 
+                    
+                    <div id="hourlyProductionGraphCont">
+                        <canvas id="hourlyProductionGraph" class="graph"> </canvas>
+                    </div>
+                    
+                </div>
+
+                <div class="graphModalItem"> 
+                    
+                    <div id="hourlyConsomationGraphCont">
+                        <canvas id="hourlyConsomationGraph" class="graph"> </canvas>
+                    </div>
+                    
+                </div>
+
+                <div class="graphModalItem"> 
+                    
+                    <div id="consomationVsProductionGraphCont">
+                        <canvas id="consomationVsProductionGraph" class="graph"> </canvas>
+                    </div>
+                    
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Panels Left & Top -->
+    <div id="topPanel">
+
+        <div id="toolPanel">
+
+            <button class="toolButton" id="cursorButton">
+                Cursor
+            </button>
+
+            <button class="toolButton" id="disableButton">
+                Disable
+            </button>
+
+            <button class="toolButton" id="linkButton">
+                Link
+            </button>
+
+        </div>
+
+        <div id="selectionPanel">
+
+            <button class="selectionButton" id="zoneButton">
+                Select zone
+            </button>
+
+            <button class="selectionButton" id="brushButton">
+                Brush
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- currentPin Panel -->
+    <div id="currentPinPanel">
+
+        <h1 id="pinTitle">Current Infra</h1>
+        <p id= "pinProduction"> Infra. production:  </p>
+        <p id= "pinCost"> Infra. cost:  </p>
+        
+        <div id= currentPinPanelButtonPanel>
+            <button class="toolButton" id="deleteCurrentPinButton">
+                Delete
+            </button>
+
+        </div>
+
+    </div>
+
+    <!--SIDE PANEL-->
+    <div id="sidePanel">
+
+        <div id="filePanel">
+
+            <div class="filePanelItem">
+                <a class="filePanelItemTag">File</a>
+                <div class="filePanelItemBox">
+                    <a> New </a>
+                    <a onclick="document.getElementById('file-input').click();"> Open a new Map </a>
+                    <a id="calculateButton"> Calculate Solution </a>
+                    <a id="exportButton"> Export grid </a>
+
+                </div>
+            </div>
+
+            <div class="filePanelItem">
+                <a class="filePanelItemTag">Edit</a>
+                <div class="filePanelItemBox">
+                    <a> Undo </a>
+                    <a> Redo </a>
+                    <a> Delete </a>
+                </div>
+            </div>
+
+            <div class="filePanelItem">
+                <a class="filePanelItemTag">Insert</a>
+                <div class="filePanelItemBox">
+                    <a> Wind </a>
+                    <a> Hydrolic </a>
+                    <a> Solar </a>
+                    <a> Consomation </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="logoPanel">
+            <img src="Resource/Logo.png" alt="PlacesLogo" id="logo">
+        </div>
+
+        <div id="mapListButtonCont">
+
+            <button id="mapListButton">
+                Map List
+            </button>
+
+        </div>
+        <div id="infrastructureListPanel">
+
+            <div id="infrastructureListPanelContent">
+
+                <ul id="infrastructureList" class="list">
+
+                    <li class="listItem">
+                        <a>Wind</a>
+                        <ul class="listItemChildList">
+
+                            <li class="listItemChildItem" onclick="choosePin('wind');">
+                                <a> Wind </a>
+                            </li>
+                            <li class="listItemChildItem" onclick="choosePin('offshoreWind');">
+                                <a> Offshore wind </a>
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                    <li class="listItem">
+                        <a>Hydrolic</a>
+
+                        <ul class="listItemChildList">
+
+                            <li class="listItemChildItem" onclick="choosePin('hydrolic');">
+                                <a> Hydrolic </a>
+                            </li>
+                           
+                        </ul>
+
+                    </li>
+
+                    <li class="listItem">
+                        <a>Solar</a>
+
+                        <ul class="listItemChildList">
+
+                            <li class="listItemChildItem" onclick="choosePin('solar');">
+                                <a> Solar </a>
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                    <li class="listItem">
+                        <a>Consomation</a>
+
+                        <ul class="listItemChildList">
+
+                            <li class="listItemChildItem" onclick="choosePin('misc1');">
+                                <a> City </a>
+                            </li>
+                            <li class="listItemChildItem" onclick="choosePin('misc2');">
+                                <a> Factory </a>
+                            </li>
+                            <li class="listItemChildItem" onclick="choosePin('misc3');">
+                                <a> Misc 1 </a>
+                            </li>
+                            <li class="listItemChildItem" onclick="choosePin('misc4');">
+                                <a> Misc 2 </a>
+                            </li>
+                            <li class="listItemChildItem" onclick="choosePin('misc5');">
+                                <a> Misc 3 </a>
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div id="graphPanel">
+
+            <div id="energyRepartitionGraphCont">
+
+                <canvas id="energyRepartitionGraph" class="graph"> </canvas>
+
+            </div>
+
+            <div id="graphPanelInformationCont">
+
+                <p id="graphPanelConstructionCost">Contruction cost: 3M$</p>
+                <p id="graphPanelMaintenanceCost">Maintenance cost: 500k$/yr</p>
+                <p id="graphPanelProduction">Production: 52MWh/month</p>
+
+            </div>
+
+            <button id="detailedAnalysisButton">Detailed Analysis</button>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

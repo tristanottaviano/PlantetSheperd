@@ -1,0 +1,89 @@
+#analysisModal .modalContent{
+
+    width: 50vw;
+    height: 45vw;
+    top: 3vw;
+    animation-name: openModalAnimation;
+    animation-duration: 0.4s;
+
+}
+
+#analysisModal .modalBody{
+
+    overflow-x: hidden;
+    overflow-y: scroll;
+    list-style-type: none;
+    scrollbar-width: none;
+    max-height: 80%;
+
+}
+
+/*Animation */
+@keyframes openModalAnimation {
+    from {top: -80vw; opacity: 0}
+    to {top: 3vw; opacity: 1}
+} 
+
+#energyRepartitionGraphCont{
+
+    width: 70%;
+    height: 8vw;
+    margin: 0.5vw;
+    padding: 0.5vw;
+    margin-bottom: 2vw;
+
+}
+
+#energyRepartitionGraphCont2{
+
+    height: 20vw;
+    width: 20vw;
+    margin-left: 5vw;
+
+}
+
+#potentialRepartitionGraphCont{
+
+    height: 20vw;
+    width: 20vw;
+
+}
+
+#monthlyProductionGraphCont{
+
+    height: 20vw;
+    width: 80%;
+
+}
+
+#hourlyProductionGraphCont{
+
+    height: 20vw;
+    width: 80%;
+
+}
+#hourlyConsomationGraphCont{
+
+    height: 20vw;
+    width: 80%;
+
+}
+
+#consomationVsProductionGraphCont{
+
+    height: 20vw;
+    width: 80%;
+
+}
+
+.graphModalItem{
+
+   width: 100%;
+   height: 20vw;
+   background-color: rgba(150, 150, 150, 0.05);
+   margin-bottom: 2vw; 
+   display: flex;
+   justify-content: center;
+   align-content: center;
+
+}

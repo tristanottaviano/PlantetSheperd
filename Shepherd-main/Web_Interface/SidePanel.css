@@ -1,0 +1,299 @@
+#sidePanel{
+    
+    position: absolute;
+    left: 0;
+    top: 0;
+    height:100%;
+    width: 5vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(26, 26, 26);
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: 3px;
+    border-color: black;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    z-index: 1;
+    transition: all 0.5s ease;
+    
+}
+
+#sidePanel:hover{
+    
+    width: 15vw;
+    background-color: rgba(37, 37, 37, 0.95);
+    transition: all 0.2s ease;
+    
+    
+}
+
+#sidePanel:hover #infrastructureListPanel,
+#sidePanel:hover #graphPanel,
+#sidePanel:hover #mapListButton,
+#sidePanel:hover #filePanel,
+#sidePanel:hover #infrastructureListPanelContent{
+    
+    opacity: 1;
+    transition: all 0.3s ease;
+    
+}
+
+
+#filePanel{
+    
+    width: 100%;
+    display: flex;
+    height: 0;
+    opacity: 0;
+    
+}
+
+#sidePanel:hover #filePanel{
+    
+    height: 1.5vw;
+    transition: all 0.3s ease;
+
+}
+
+.filePanelItem{
+
+    width: 3vw;
+    margin-right: 0.3vw;
+    margin-left: 0.3vw;
+    padding: 0 1vw;
+    font-size: 0.8vw;
+    background-color: rgb(44, 44, 44);
+    color: aliceblue;
+    border-width: 1px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-color: rgb(29, 129, 29);
+    border-style: solid;
+    border-top: 0;
+    overflow: hidden;
+    cursor: pointer;
+    text-align: center;
+
+
+}
+
+.filePanelItem:hover{
+
+    background-color: rgb(53, 53, 53);
+    border-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-style: solid;
+
+}
+
+.filePanelItemBox{
+
+    position: absolute;
+    top: 1.5vw;
+    left: 0;
+    width: 99%;
+    height: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(53, 53, 53);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-color: rgba(63, 75, 51, 0.562);
+    border-width: 2px;
+    border-style: dashed;
+    opacity: 0;
+    pointer-events:none;
+    transition: all 0.1s ease;
+
+}
+
+.filePanelItem:hover > .filePanelItemBox {
+
+    height: 8vw;
+    opacity: 0.93;
+    pointer-events:all;
+    transition: all 0.2s ease;
+
+}
+
+.filePanelItemBox a{
+
+    margin-bottom: 0.1vw;
+    border-color: #252525c2;
+    border-width: 2px;
+    border-style: solid;
+    background-color: rgba(46, 46, 46, 0.7);
+
+
+}
+
+.filePanelItemBox a:hover{
+
+    background-color: rgba(82, 82, 82, 0.7);
+
+}
+
+#logoPanel{
+
+    width:  100%;
+    height: 3vw;
+    transition: all 0.3s ease;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
+}
+
+#sidePanel:hover #logoPanel{
+
+    height: 8vw;
+    transition: all 0.2s ease;
+
+}
+
+#mapListButtonCont{
+
+    text-align: center;
+    margin: 1vw;
+
+}
+
+#mapListButton{
+
+    width: 0;
+    height: 2vw;
+    background-color: rgb(61, 61, 61);
+    border-radius: 5px;
+    border-color: rgb(55, 58, 55);
+    border-width: 2px;
+    color: aliceblue;
+    font-size: 1vw;
+    opacity: 0;
+    transition: all 0.1s ease;
+
+
+}
+
+#mapListButton:hover{
+
+    font-size: 1.05vw;
+    border-width: 3px;
+    border-color: rgb(28, 175, 28);
+    transition: all 0.1s ease;
+
+}
+
+#sidePanel:hover #mapListButton{
+
+    width: 10vw;
+    transition: all 0.1s ease;
+
+}
+
+#infrastructureListPanel{
+
+    width: 100%;
+    height: 15vw;
+    opacity: 0;
+
+}
+
+#infrastructureListPanelContent{
+
+
+    width: 12vw;
+    height: 14vw;
+    opacity: 0;
+    margin: auto;
+    background-color: rgb(61, 61, 61);
+    border-radius: 10px;
+    border-color: rgba(0, 0, 0, 0.5);
+    border-style: solid;
+    border-width: 2px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    list-style-type: none;
+    scrollbar-width: none;
+    max-height: 100%;
+
+}
+
+#infrastructureListPanelContent .listItem{
+
+    height: 1.45vw;
+
+}
+
+
+#infrastructureListPanelContent .listItem:hover{
+
+    height: 7vw;
+
+}
+
+
+#graphPanel{
+
+    width: 95%;
+    height: 24vw;
+    margin-bottom: 1vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(61, 61, 61);
+    border-radius: 10px;
+    border-color: rgba(0, 0, 0, 0.5);
+    border-style: solid;
+    border-width: 2px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    list-style-type: none;
+    scrollbar-width: none;
+    opacity: 0;
+
+}
+
+#detailedAnalysisButton{
+
+    width: 10vw;
+    height: 2vw;
+    margin: 1vw;
+    background-color: rgb(61, 61, 61);
+    border-radius: 5px;
+    border-color: rgb(55, 58, 55);
+    border-width: 2px;
+    color: aliceblue;
+    font-size: 1vw;
+    transition: all 0.1s ease;
+
+
+}
+
+#detailedAnalysisButton:hover{
+
+    font-size: 1.05vw;
+    border-color: rgb(28, 175, 28);
+    transition: all 0.1s ease;
+
+}
+
+
+#sidePanel:hover #detailedAnalysisButton{
+
+    width: 10vw;
+    transition: all 0.1s ease;
+
+}
+
+#graphPanelInformationCont{
+
+    color: aliceblue;
+    width: 100%;
+
+}
+

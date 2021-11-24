@@ -1,0 +1,134 @@
+
+.list{
+
+    padding: 0;
+    list-style: none;
+
+}
+
+.listItem{
+    
+    width: 98%;
+    height: 2vw;
+    top:0;
+    z-index: 100;
+    background-color: rgba(22, 22, 22, 0.4);
+    color: rgb(212, 212, 212);
+    margin-bottom: 0.4vw;
+    margin-top: 0.4vw;
+    padding-top: 0.6vw;
+    font-size: 1vw;
+    border-width: 2px;
+    border-color: black;
+    border-style: dashed;
+    border-radius: 5px;
+    overflow:hidden;
+    cursor:pointer;
+    text-align: center;
+    transition: all 0.15s ease;
+    
+}
+
+.listItem:hover{
+
+    background-color: rgba(30, 30, 30, 0.6);
+    color: rgb(250, 250, 250);
+    font-size: 1.2vw;
+    height: 8vw;
+    border-width: 2px;
+    border-color: rgb(39, 156, 15);
+    border-style: solid;
+    border-radius: 10px;
+    transition: all 0.15s ease;
+
+}
+
+#infrastructureListPanelContent .listItem{
+
+    padding-top: 0;
+    margin-top: 0.6vw;
+    margin-bottom: 0.6vw;
+
+}
+
+
+#mapListModalMapsList{
+
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    list-style-type: none;
+    scrollbar-width: none;
+    max-height: 15vw;
+
+}
+
+.listItemDescription{
+
+    width: 100%;
+    height: 5vw;
+    background-color: rgba(22, 22, 22, 0.4);
+    color: rgb(212, 212, 212);
+    font-size: 0.75vw;
+    border-width: 2px;
+    border-color: black;
+    border-style: dashed;
+    border-radius: 5px;
+    overflow:hidden;
+    cursor:pointer;
+    text-align: center;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    margin: 0;
+    opacity: 0;
+
+}
+
+
+.listItem:hover .listItemDescription{
+
+    opacity: 1;
+    transition: all 0.15s ease;
+
+}
+
+
+.listItemChildList{
+
+    padding-left: 0;
+    padding-right: 0;
+    list-style: none;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    list-style-type: none;
+    scrollbar-width: none;
+    max-height: 5.4vw;
+
+}
+
+.listItemChildItem {
+
+    height: 1.3vw;
+    margin-bottom: 0.2vw;
+    margin-top: 0.2vw;
+    padding-top: 0.1vw;
+    background-color: rgb(82, 82, 82);
+    border-color: rgba(0, 0, 0, 0.3);
+    border-width: 1px;
+    border-style: dashed;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 0.8vw;
+    transition: all 0.1s ease;
+
+}
+
+
+.listItemChildItem:hover {
+
+    background-color: rgb(105, 105, 105);
+    border-color: rgba(74, 255, 57, 0.616);
+    transition: all 0.1s ease;
+
+}
